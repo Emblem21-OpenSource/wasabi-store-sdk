@@ -1,6 +1,6 @@
 const config = {
   command: 'upload [bucket] [path]',
-  desc: 'Uploads a file, archive, or directory to a bucket',
+  desc: 'Uploads a file or directory to a bucket',
   builder: (yargs) => {
     yargs
       .positional('bucket', {

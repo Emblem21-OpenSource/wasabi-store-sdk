@@ -1,5 +1,5 @@
 const config = {
-  command: 'Remove [bucket] [file]',
+  command: 'remove [bucket] [file]',
   desc: 'Removes a file or an entire bucket',
   builder: (yargs) => {
     yargs

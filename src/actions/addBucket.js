@@ -8,6 +8,5 @@ const awsAddBucket = require('../aws/addBucket')
  */
 module.exports = async function addBucket (store, bucketName) {
   const result = await awsAddBucket(store, bucketName)
-  // @TODO: Return only the URL for the bucket
-  return result
+  return result.Location
 }

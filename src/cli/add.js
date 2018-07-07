@@ -1,3 +1,6 @@
+const addBucket = require('../actions/addBucket')
+const getStore = require('../actions/getStore')
+
 const config = {
   command: 'add [bucket]',
   desc: 'Adds a new bucket to store data',
@@ -8,11 +11,10 @@ const config = {
         default: undefined
       })
   },
-  handler: (argv) => {
-    // Setup
-    if (argv.verbose) {
-      console.info(`start server on :${argv.port}`)
-    }
+  handler: async (argv) => {
+    const store = getStore()
+    const result = await addBucket(store, argv.bucket)
+    console.log(result)
   }
 }
 

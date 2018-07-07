@@ -1,5 +1,5 @@
 {
-  "name": "wasabi-store-sdk",
+  "name": "wasabi-store",
   "version": "1.0.0",
   "description": "An SDK to simplify the creation of Wasabi buckets for data lake storage and retreival.",
   "main": "index.js",
