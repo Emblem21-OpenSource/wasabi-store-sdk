@@ -1,0 +1,28 @@
+{
+  "name": "wasabi-store-sdk",
+  "version": "1.0.0",
+  "description": "An SDK to simplify the creation of Wasabi buckets for data lake storage and retreival.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "tbd"
+  },
+  "keywords": [
+    "wasabi",
+    "data",
+    "lake",
+    "storage",
+    "store",
+    "aws",
+    "big"
+  ],
+  "author": "Patrick Ryan <patrick.ryan@emblem21.com>",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.270.1",
+    "yargs": "^12.0.1"
+  }
+}
