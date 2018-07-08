@@ -1,4 +1,5 @@
 const awsGetFile = require('../aws/getFile')
+const awsGetArchive = require('../aws/getArchive')
 
 /**
  * Returns the contents of a bucket file from your Wasabi Store.
@@ -7,13 +8,12 @@ const awsGetFile = require('../aws/getFile')
  * @param  path {string}
  * @return {string}
  */
-module.exports = async function getFile (store, bucketName, path) {
-  if (path === undefined) {
+module.exports = async function getFile (store, bucketName, path, asArchive) {
+  if (asArchive) {
     // Download everything in the bucket
+    return awsGetArchive(store, bucketName, path)
   } else {
     // Download a specific file from a bucket
-    const contents = await awsGetFile(store, bucketName, path)
-    // @TODO: Return the file contents
-    return contents
+    return awsGetFile(store, bucketName, path)
   }
 }
