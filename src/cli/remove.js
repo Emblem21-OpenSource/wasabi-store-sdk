@@ -18,12 +18,15 @@ const config = {
   },
   handler: async (argv) => {
     const store = getStore()
+    let result
 
     if (argv.path === undefined) {
-      console.log(await removeBucket(store, argv.bucket))
+      result = await removeBucket(store, argv.bucket)
     } else {
-      console.log(await removeFile(store, argv.bucket, argv.path))
+      result = await removeFile(store, argv.bucket, argv.path)
     }
+
+    console.log(JSON.stringify(result))
   }
 }
 

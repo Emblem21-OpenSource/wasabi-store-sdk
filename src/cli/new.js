@@ -14,7 +14,7 @@ const config = {
   handler: async (argv) => {
     const store = getStore()
     const result = await addBucket(store, argv.bucket)
-    console.log(result)
+    console.log(JSON.stringify(result))
   }
 }
 

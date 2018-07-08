@@ -1,10 +1,17 @@
 # WasabiStore
 
+WasabiStore is a library that provides common data lake operations for the egress-free Wasabi service.  Because Wasabi uses AWS S3, this library can also be usable for standard S3 bucket management as well.
+
 # Getting Started
 
 Read these [setup instructions](SETUP.md) to get started.
 
-Review the [Wasabi API](https://wasabi.com/wp-content/themes/wasabi/docs/API_Guide/index.html#t=topics%2Fapidiff-intro.htm) guide as well for more details.
+Review the [Wasabi API](https://wasabi.com/wp-content/uploads/2018/06/Wasabi_API_Guide.pdf?x84297) guide as well for more details.
+
+# Feature Requests
+
+* Use IV ciphers for `--encrypt`
+* Allow the tagging of resources (Wasabi does not support this but S3 does.)
 
 # Notes
 

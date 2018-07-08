@@ -1,5 +1,6 @@
 const awsGetFile = require('../aws/getFile')
 const awsGetArchive = require('../aws/getArchive')
+const awsGetTags = require('../aws/getTags')
 
 /**
  * Returns the contents of a bucket file from your Wasabi Store.
@@ -8,12 +9,25 @@ const awsGetArchive = require('../aws/getArchive')
  * @param  path {string}
  * @return {string}
  */
-module.exports = async function getFile (store, bucketName, path, asArchive) {
+module.exports = async function getFile (store, bucketName, path, asArchive, decryptionPassword = false) {
   if (asArchive) {
     // Download everything in the bucket
-    return awsGetArchive(store, bucketName, path)
+    return awsGetArchive(store, bucketName, path, decryptionPassword)
   } else {
     // Download a specific file from a bucket
-    return awsGetFile(store, bucketName, path)
+    const result = await awsGetFile(store, bucketName, path, decryptionPassword)
+    let tags
+    try {
+      tags = await awsGetTags(store, bucketName, path)
+      result.Tags = tags.TagSet
+    } catch (e) {
+      if (e.code !== 'NoSuchTagSetError') {
+        throw e
+      } else {
+        result.Tags = []
+      }
+    }
+
+    return result
   }
 }
