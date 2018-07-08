@@ -1,5 +1,4 @@
-const getFile = require('../actions/getFile')
-const getBucketStats = require('../actions/getBucketStats')
+const getStats = require('../actions/getStats')
 const getStore = require('../actions/getStore')
 
 const config = {
@@ -18,17 +17,7 @@ const config = {
   },
   handler: async (argv) => {
     const store = getStore()
-    let result
-
-    if (argv.path === undefined) {
-      result = await getBucketStats(store, argv.bucket)
-    } else {
-      const file = await getFile(store, argv.bucket, argv.path)
-      // @TODO Is there a way to make S3 not download?
-      delete file.Body
-      result = file
-    }
-
+    const result = getStats(store, argv.bucket, argv.path)
     console.log(JSON.stringify(result))
   }
 }

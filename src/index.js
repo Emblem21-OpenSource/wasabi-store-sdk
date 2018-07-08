@@ -1,6 +1,6 @@
 const AddBucket = require('./actions/addBucket')
 const AddFile = require('./actions/addFile')
-const GetBucketStats = require('./actions/getBucketStats')
+const GetStats = require('./actions/getStats')
 const GetFile = require('./actions/getFile')
 const GetStore = require('./actions/getStore')
 const ListFiles = require('./actions/listFiles')
@@ -18,9 +18,9 @@ module.exports = function WasabiStore (accessKeyId, secretAccessKey) {
 
   return {
     addBucket: async (bucketName) => AddBucket(store, bucketName),
-    addFile: async (bucketName, path) => AddFile(store, bucketName, path),
-    getBucketStats: async (bucketName) => GetBucketStats(store, bucketName),
-    getFile: async (bucketName, path) => GetFile(store, bucketName, path),
+    addFile: async (bucketName, absolutePath, tags, isPublic, encryptionPassword) => AddFile(store, bucketName, absolutePath, tags, isPublic, encryptionPassword),
+    getFile: async (bucketName, path, asArchive, decryptionPassword) => GetFile(store, bucketName, path, asArchive, decryptionPassword),
+    getStats: async (bucketName, path) => GetStats(store, bucketName, path),
     listFiles: async (bucketName) => ListFiles(store, bucketName),
     removeBucket: async (bucketName) => RemoveBucket(store, bucketName),
     removeFile: async (bucketName, path) => RemoveFile(store, bucketName, path)

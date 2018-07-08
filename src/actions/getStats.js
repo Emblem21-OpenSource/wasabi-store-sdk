@@ -1,14 +1,24 @@
 const awsListFiles = require('../aws/listFiles')
+const awsGetFile = require('../aws/getFile')
 
 const quoteRegex = /"/g
 
 /**
- * Returns a list of files from a Wasabi Store bucket.
+ * Returns statistics about a Wasabi Store bucket or file.
  * @param  store {AWS.S3}
  * @param  bucketName {string}
  * @return {object}
  */
-module.exports = async function getBucketStats (store, bucketName) {
+module.exports = async function getStats (store, bucketName, path) {
+  if (path !== undefined) {
+    // Get the stats from a single file
+    const file = await awsGetFile(store, bucketName, path)
+    // @TODO Is there a way to make S3 not download?
+    delete file.Body
+    return file
+  }
+
+  // Get stats for an entire bucket
   const result = await awsListFiles(store, bucketName)
   let totalSize = 0
   let biggestFile = -Infinity
