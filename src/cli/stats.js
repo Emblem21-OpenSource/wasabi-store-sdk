@@ -1,3 +1,6 @@
+const listFiles = require('../actions/listFiles')
+const getStore = require('../actions/getStore')
+
 const config = {
   command: 'stats [bucket]',
   desc: 'Gets stats about a bucket',
@@ -8,11 +11,10 @@ const config = {
         default: undefined
       })
   },
-  handler: (argv) => {
-    // Setup
-    if (argv.verbose) {
-      console.info(`start server on :${argv.port}`)
-    }
+  handler: async (argv) => {
+    const store = getStore()
+    const result = await listFiles(store, argv.bucket)
+    console.log(result)
   }
 }
 

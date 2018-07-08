@@ -1,6 +1,6 @@
-var s3Zip = require('s3-zip')
-var XmlStream = require('xml-stream')
-
+const s3Zip = require('s3-zip')
+const XmlStream = require('xml-stream')
+const stream = require('stream')
 /**
  * Returns the contents of a bucket file from your Wasabi Store.
  * @param  store {AWS.S3}
@@ -29,18 +29,23 @@ module.exports = function getFile (store, bucketName, path) {
       let result = Buffer.alloc(0)
 
       s3Zip
+        .setFormat('tar')
+        .setArchiverOptions({ gzip: true })
         .archive({
           s3: store,
-          gzip: true,
           bucket: bucketName,
           preserveFolderStructure: true
         }, path, filesArray)
-        .on('data', (data) => {
-          result = Buffer.concat([result, data])
-        })
         .on('error', reject)
         .on('end', () => resolve({
+          // @TODO This result is not a valid zip file
           Body: result
+        }))
+        .pipe(new stream.Writable({
+          write: (chunk, encoding, next) => {
+            result = Buffer.concat([result, chunk])
+            next()
+          }
         }))
     })
   })
