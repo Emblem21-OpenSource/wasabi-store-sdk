@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const program = require('yargs')
   .command(require('./src/cli/setup'))
-  .command(require('./src/cli/add'))
+  .command(require('./src/cli/new'))
   .command(require('./src/cli/upload'))
   .command(require('./src/cli/download'))
   .command(require('./src/cli/stats'))

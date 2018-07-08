@@ -1,3 +1,7 @@
+const addFile = require('../actions/addFile')
+const getStore = require('../actions/getStore')
+const path = require('path')
+
 const config = {
   command: 'upload [bucket] [path]',
   desc: 'Uploads a file or directory to a bucket',
@@ -12,11 +16,10 @@ const config = {
         default: undefined
       })
   },
-  handler: (argv) => {
-    // Setup
-    if (argv.verbose) {
-      console.info(`start server on :${argv.port}`)
-    }
+  handler: async (argv) => {
+    const store = getStore()
+    const result = await addFile(store, argv.bucket, path.resolve(argv.path))
+    console.log(result)
   }
 }
 

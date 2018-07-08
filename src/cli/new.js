@@ -2,7 +2,7 @@ const addBucket = require('../actions/addBucket')
 const getStore = require('../actions/getStore')
 
 const config = {
-  command: 'add [bucket]',
+  command: 'new [bucket]',
   desc: 'Adds a new bucket to store data',
   builder: (yargs) => {
     yargs

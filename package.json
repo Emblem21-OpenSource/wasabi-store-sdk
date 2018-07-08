@@ -23,6 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.270.1",
+    "glob": "^7.1.2",
     "yargs": "^12.0.1"
   }
 }
