@@ -8,7 +8,7 @@ process
     process.exit(1)
   })
 
-const program = require('yargs')
+require('yargs')
   .command(require('./src/cli/setup'))
   .command(require('./src/cli/new'))
   .command(require('./src/cli/upload'))
@@ -20,5 +20,3 @@ const program = require('yargs')
     default: false
   })
   .argv
-
-module.exports = program
