@@ -1,4 +1,4 @@
-const listFiles = require('../actions/listFiles')
+const getBucketStats = require('../actions/getBucketStats')
 const getStore = require('../actions/getStore')
 
 const config = {
@@ -13,7 +13,7 @@ const config = {
   },
   handler: async (argv) => {
     const store = getStore()
-    const result = await listFiles(store, argv.bucket)
+    const result = await getBucketStats(store, argv.bucket)
     console.log(result)
   }
 }

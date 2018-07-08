@@ -7,7 +7,6 @@ const awsRemoveBucket = require('../aws/removeBucket')
  * @return {boolean}
  */
 module.exports = async function removeBucket (store, bucketName) {
-  const result = await awsRemoveBucket(store, bucketName)
-  // @TODO: Examine the removal results for validation
-  return result
+  await awsRemoveBucket(store, bucketName)
+  return true
 }

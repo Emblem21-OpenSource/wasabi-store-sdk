@@ -1,5 +1,4 @@
 const fs = require('fs')
-const Path = require('path')
 const glob = require('glob')
 
 module.exports = {

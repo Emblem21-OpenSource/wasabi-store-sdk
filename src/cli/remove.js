@@ -1,3 +1,7 @@
+const removeBucket = require('../actions/removeBucket')
+const removeFile = require('../actions/removeFile')
+const getStore = require('../actions/getStore')
+
 const config = {
   command: 'remove [bucket] [file]',
   desc: 'Removes a file or an entire bucket',
@@ -12,10 +16,13 @@ const config = {
         default: undefined
       })
   },
-  handler: (argv) => {
-    // Setup
-    if (argv.verbose) {
-      console.info(`start server on :${argv.port}`)
+  handler: async (argv) => {
+    const store = getStore()
+
+    if (argv.file === undefined) {
+      console.log(await removeBucket(store, argv.bucket))
+    } else {
+      console.log(await removeFile(store, argv.bucket, argv.file))
     }
   }
 }

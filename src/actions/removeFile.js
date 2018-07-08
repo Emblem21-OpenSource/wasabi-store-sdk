@@ -8,7 +8,6 @@ const awsRemoveFile = require('../aws/removeFile')
  * @return {boolean}
  */
 module.exports = async function removeFile (store, bucketName, path) {
-  const result = await awsRemoveFile(store, bucketName, path)
-  // @TODO: Examine the removal results for validation
-  return result
+  await awsRemoveFile(store, bucketName, path)
+  return true
 }
