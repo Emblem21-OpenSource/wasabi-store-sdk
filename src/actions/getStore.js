@@ -1,9 +1,10 @@
 const AWS = require('aws-sdk')
 
 /**
- * @param  accessKeyId {[type]}
- * @param  secretAccessKey {[type]}
- * @return {[type]}
+ * Returns a Wasabi/S3 Store
+ * @param  {String}  accessKeyId.     AWS Access Key ID for the wasabiStore profile
+ * @param  {String}  secretAccessKey  AWS Secret Access Key ID for the wasabiStore profile
+ * @return {AWS.S3}                   AWS S3 Instance
  */
 module.exports = function getStore (accessKeyId, secretAccessKey) {
   const credentials = new AWS.SharedIniFileCredentials({profile: 'wasabiStore'})

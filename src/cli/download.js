@@ -3,19 +3,25 @@ const getStore = require('../actions/getStore')
 
 const config = {
   command: 'download [bucket] [path]',
-  desc: 'Downloads a file or the contents of a directory as an archive',
+  desc: 'Downloads a file or the contents of a directory.',
+
+  /**
+   * CLI Arguments
+   * @param  {Object}  yargs  Yargs instance
+   */
   builder: (yargs) => {
     yargs
       .positional('bucket', {
-        describe: 'bucket name',
+        describe: 'The name of the Wasabi/S3 bucket',
         default: undefined
       })
       .positional('path', {
-        describe: 'file name',
+        describe: 'The file path to download from Wasabi/S3',
         default: undefined
       })
       .option('archive', {
         alias: 'a',
+        describe: 'The process output is a .zip file.',
         default: false
       })
       .option('decrypt', {
@@ -24,6 +30,11 @@ const config = {
         default: false
       })
   },
+
+  /**
+   * CLI Handler
+   * @param  {Object}  argv  CLI Arguments
+   */
   handler: async (argv) => {
     // Setup
     const store = getStore()

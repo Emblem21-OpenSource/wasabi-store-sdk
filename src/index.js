@@ -9,9 +9,9 @@ const RemoveFile = require('./actions/removeFile')
 
 /**
  * Returns a WasabiStore instance
- * @param  accessKeyId {string}
- * @param  secretAccessKey {string}
- * @return {object}
+ * @param  {String}  accessKeyId.     AWS Access Key ID for the wasabiStore profile
+ * @param  {String}  secretAccessKey  AWS Secret Access Key ID for the wasabiStore profile
+ * @return {Object}                   WasabiStore instance
  */
 module.exports = function WasabiStore (accessKeyId, secretAccessKey) {
   const store = GetStore(accessKeyId, secretAccessKey)

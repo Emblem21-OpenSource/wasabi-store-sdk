@@ -3,11 +3,13 @@ const awsGetArchive = require('../aws/getArchive')
 const awsGetTags = require('../aws/getTags')
 
 /**
- * Returns the contents of a bucket file from your Wasabi Store.
- * @param  store {AWS.S3}
- * @param  bucketName {string}
- * @param  path {string}
- * @return {string}
+ * Returns the contents of a file from a Wasabi/S3 bucket.
+ * @param  {AWS.S3}  store                Wasabi/S3 Store instance
+ * @param  {String}  bucketName           Bucket name
+ * @param  {String}  path                 The path of the file or directory in the bucket
+ * @param  {Boolean}  asArchive           Get the file(s) as a Zip file
+ * @param  {Boolean}  decryptionPassword  The password used to decrypt the file.
+ * @return {Object}                       Information about the resource
  */
 module.exports = async function getFile (store, bucketName, path, asArchive, decryptionPassword = false) {
   if (asArchive) {

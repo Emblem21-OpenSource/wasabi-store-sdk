@@ -1,10 +1,9 @@
-const removeBucket = require('../actions/removeBucket')
-const removeFile = require('../actions/removeFile')
+const getInfo = require('../actions/getInfo')
 const getStore = require('../actions/getStore')
 
 const config = {
-  command: 'remove [bucket] [path]',
-  desc: 'Removes a file from a Wasabi/S3 bucket.  If the path argument isn\'t present, the bucket will be removed instead.',
+  command: 'info [bucket] [path]',
+  desc: 'Returns information about a file from a Wasabi/S3 bucket.  If the path argument isn\'t present, information about the bucket will be returned instead.',
 
   /**
    * CLI Arguments
@@ -17,7 +16,7 @@ const config = {
         default: undefined
       })
       .positional('path', {
-        describe: 'The file path to remove on Wasabi/S3',
+        describe: 'The file path on Wasabi/S3 to get information about.',
         default: undefined
       })
   },
@@ -28,14 +27,7 @@ const config = {
    */
   handler: async (argv) => {
     const store = getStore()
-    let result
-
-    if (argv.path === undefined) {
-      result = await removeBucket(store, argv.bucket)
-    } else {
-      result = await removeFile(store, argv.bucket, argv.path)
-    }
-
+    const result = getInfo(store, argv.bucket, argv.path)
     console.log(JSON.stringify(result))
   }
 }

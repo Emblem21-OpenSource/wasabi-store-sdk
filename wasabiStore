@@ -9,12 +9,13 @@ process
   })
 
 require('yargs')
-  .command(require('./src/cli/setup'))
+  .command(require('./src/cli/register'))
   .command(require('./src/cli/new'))
   .command(require('./src/cli/upload'))
   .command(require('./src/cli/download'))
-  .command(require('./src/cli/stats'))
+  .command(require('./src/cli/info'))
   .command(require('./src/cli/remove'))
+  .command(require('./src/cli/build'))
   .option('verbose', {
     alias: 'v',
     default: false

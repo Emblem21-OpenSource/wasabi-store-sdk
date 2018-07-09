@@ -1,14 +1,15 @@
 const s3Zip = require('s3-zip')
 const XmlStream = require('xml-stream')
 const stream = require('stream')
+
 /**
- * Returns the contents of a bucket file from your Wasabi Store.
- * @param  store {AWS.S3}
- * @param  bucketName {string}
- * @param  path {string}
- * @return {string}
+ * Returns a Zip file of a buckets directory
+ * @param  {AWS.S3}  store                Wasabi/S3 Store instance
+ * @param  {String}  bucketName           Bucket name
+ * @param  {String}  path                 The path of the file or directory in the bucket
+ * @return {Buffer}                       Buffer of the Zip file
  */
-module.exports = function getFile (store, bucketName, path) {
+module.exports = function getArchive (store, bucketName, path) {
   return new Promise((resolve, reject) => {
     const filesArray = []
 

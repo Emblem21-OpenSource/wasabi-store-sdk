@@ -4,12 +4,12 @@ const awsGetFile = require('../aws/getFile')
 const quoteRegex = /"/g
 
 /**
- * Returns statistics about a Wasabi Store bucket or file.
- * @param  store {AWS.S3}
- * @param  bucketName {string}
- * @return {object}
+ * Returns information about a file or the entire bucket.
+ * @param {AWS.S3}  store       Wasabi/S3 Store instance
+ * @param {String}  bucketName  Bucket name
+ * @return {Object}             Information
  */
-module.exports = async function getStats (store, bucketName, path) {
+module.exports = async function getInfo (store, bucketName, path) {
   if (path !== undefined) {
     // Get the stats from a single file
     const file = await awsGetFile(store, bucketName, path)

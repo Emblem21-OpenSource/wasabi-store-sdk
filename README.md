@@ -14,8 +14,6 @@ Read these [setup instructions](SETUP.md) to get started.
 
 Review the [Wasabi API](https://wasabi.com/wp-content/uploads/2018/06/Wasabi_API_Guide.pdf?x84297) guide as well for more details.
 
-###
-
 ## Usage
 
 WasabiStore can be used purely as a CLI tool or as a library for a larger project.
@@ -23,6 +21,10 @@ WasabiStore can be used purely as a CLI tool or as a library for a larger projec
 ### CLI
 
 To see all of the CLI options, use the `./wasabiStore --help` command.
+
+#### Pipe Upload
+
+You an also upload data directly to a Wasabi/S3 bucket via piping: `echo "Here's an example of piping" | ./wasabiStore upload testBucket exampleFile.txt`
 
 ### Programmatic
 
@@ -38,12 +40,6 @@ const arrayOfFileDataAndBody = await wasabi.listFiles(bucketName)
 const bucketRemoved = await wasabi.removeBucket(bucketName)
 const fileRemoved = await wasabi.removeFile(bucketName, path)
 ```
-
-## Feature Requests
-
-* Use IV ciphers for `--encrypt`
-* Allow the tagging of resources (Wasabi does not support this but S3 does.)
-* Compilation for a standalone CLI binary.
 
 ## Data Lake Design
 
@@ -62,3 +58,8 @@ At the next level, data lakes are starting to be integrated with existing EDWs. 
 ### Critical component of data operations
 
 Once companies get to this stage of rollout and development, it is very likely that much of the information that flows through the company is going through the data lake. The data lake becomes a core part of the data infrastructure, replacing existing data marts or operational data stores and enabling the provision of data as a service. Businesses can take full advantage of the distributed nature of data-lake technology as well as its ability to handle computing-intensive tasks, such as those required to conduct advanced analytics or to deploy machine-learning programs. Some companies may decide to build data-intensive applications on top of the data lake—for instance, a performance-management dashboard. Or they may implement application programming interfaces so they can seamlessly combine insights gained from data-lake resources with insights gained from other applications.
+
+## Feature Requests
+
+* Use IV ciphers for `--encrypt`
+* Compilation for a standalone CLI binary.
